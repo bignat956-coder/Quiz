@@ -1,0 +1,23 @@
+{
+  "name": "Full-Stack Spring + Angular + MySQL",
+  "image": "mcr.microsoft.com/devcontainers/java-node:0-17-16",
+  "features": {
+    "ghcr.io/devcontainers/features/mysql:1": {
+      "version": "8.0",
+      "database": "quiz_server_db",
+      "user": "root",
+      "password": "YOUNGMASTER"
+    }
+  },
+  "forwardPorts": [8080, 4200, 3306],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "angular.ng-template",
+        "pivotal.vscode-spring-boot"
+      ]
+    }
+  },
+  "postCreateCommand": "sudo service mysql start"
+}
