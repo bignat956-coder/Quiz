@@ -1,55 +1,43 @@
+/* .devcontainer/devcontainer.json */
 {
-  "name": "Full-Stack Spring + Angular + MySQL",
-  "image": "mcr.microsoft.com/devcontainers/universal:latest",
-
-  // Features are not strictly needed for MySQL with this setup,
-  // as we're installing it manually. You can add other features here if needed.
+  "name": "Spring + Angular Dev Container",
+  
+  // Tell VS Code to use our Docker Compose file
+  "dockerComposeFile": "docker-compose.yml",
+  
+  // Tell VS Code to run inside the 'app' service
+  "service": "app",
+  
+  // The folder where your code will be in the container
+  "workspaceFolder": "/workspace",
+  
   "features": {
-    // If you previously had "ghcr.io/devcontainers/features/mysql:1": "8.0", make sure it's removed.
-    // This section can be left empty or contain other features you might want.
+    // This 'feature' adds Node.js (v18) to our Java container
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
   },
+
+  // This command runs after the container is built
+  // It installs the Angular CLI globally inside the container
+  "postCreateCommand": "npm install -g @angular/cli",
 
   "customizations": {
     "vscode": {
+      // All the extensions you need for Spring, Java, Angular, and SQL
       "extensions": [
-        // Java Development
-        "vscjava.vscode-java-pack",            // Includes Language Support, Debugger, Test Runner, Maven for Java, etc.
-        "redhat.java",                       // Red Hat Java Language Support (often part of Java Pack)
-        "vscjava.vscode-maven",              // Maven for Java (often part of Java Pack)
-        "vscjava.vscode-java-debug",         // Debugger for Java (often part of Java Pack)
-        "vscjava.vscode-java-test",          // Test Runner for Java (often part of Java Pack)
-
-        // Spring Boot Development
-        "pivotal.vscode-spring-boot",        // Spring Boot Extension Pack (provides many Spring tools)
-        "vmware.vscode-spring-boot-dashboard", // Spring Boot Dashboard
-        "vmware.vscode-spring-initializr",   // Spring Initializr
-        "vmware.vscode-spring-data",         // Spring Data for VS Code
-
-        // Angular Development
-        "angular.ng-template",               // Angular Language Service
-        "johnpapa.angular-essentials",       // Essential extensions for Angular development
-
-        // Database Tools
-        "ms-mssql.mssql",                    // Azure Data Studio's SQL tools (good for generic SQL)
-        "mtxr.sqltools",                     // SQLTools - Database management
-
-        // General Development Utilities
-        "esbenp.prettier-vscode",            // Code formatter
-        "dbaeumer.vscode-eslint",            // Linter for JavaScript/TypeScript
-        "editorconfig.editorconfig",         // EditorConfig for VS Code
-        "eamodio.gitlens",                   // Supercharge Git capabilities
-        "GitHub.copilot"                     // AI coding assistant (if you have access)
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-spring-initializr",
+        "angular.angular-essentials",
+        "cweijan.vscode-database-client2"
       ]
     }
   },
 
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-server && sudo mysql -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUNGMASTER'; FLUSH PRIVILEGES; CREATE DATABASE IF NOT EXISTS quiz_server_db;\" && sudo service mysql start",
-  "postStartCommand": "sudo service mysql start",
-
-  "forwardPorts": [8080, 4200, 3306],
-
-  // Optional: Set default terminal shell (e.g., zsh or bash)
-  "containerEnv": {
-    "SHELL": "/bin/bash" // or "/bin/zsh" if you install zsh
-  }
+  // Forward your application ports
+  "forwardPorts": [
+    8080, // Spring Boot default
+    4200  // Angular default
+  ]
 }
