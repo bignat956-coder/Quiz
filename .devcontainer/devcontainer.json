@@ -1,0 +1,55 @@
+{
+  "name": "Full-Stack Spring + Angular + MySQL",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+
+  // Features are not strictly needed for MySQL with this setup,
+  // as we're installing it manually. You can add other features here if needed.
+  "features": {
+    // If you previously had "ghcr.io/devcontainers/features/mysql:1": "8.0", make sure it's removed.
+    // This section can be left empty or contain other features you might want.
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Java Development
+        "vscjava.vscode-java-pack",            // Includes Language Support, Debugger, Test Runner, Maven for Java, etc.
+        "redhat.java",                       // Red Hat Java Language Support (often part of Java Pack)
+        "vscjava.vscode-maven",              // Maven for Java (often part of Java Pack)
+        "vscjava.vscode-java-debug",         // Debugger for Java (often part of Java Pack)
+        "vscjava.vscode-java-test",          // Test Runner for Java (often part of Java Pack)
+
+        // Spring Boot Development
+        "pivotal.vscode-spring-boot",        // Spring Boot Extension Pack (provides many Spring tools)
+        "vmware.vscode-spring-boot-dashboard", // Spring Boot Dashboard
+        "vmware.vscode-spring-initializr",   // Spring Initializr
+        "vmware.vscode-spring-data",         // Spring Data for VS Code
+
+        // Angular Development
+        "angular.ng-template",               // Angular Language Service
+        "johnpapa.angular-essentials",       // Essential extensions for Angular development
+
+        // Database Tools
+        "ms-mssql.mssql",                    // Azure Data Studio's SQL tools (good for generic SQL)
+        "mtxr.sqltools",                     // SQLTools - Database management
+
+        // General Development Utilities
+        "esbenp.prettier-vscode",            // Code formatter
+        "dbaeumer.vscode-eslint",            // Linter for JavaScript/TypeScript
+        "editorconfig.editorconfig",         // EditorConfig for VS Code
+        "eamodio.gitlens",                   // Supercharge Git capabilities
+        "GitHub.copilot"                     // AI coding assistant (if you have access)
+      ]
+    }
+  },
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-server && sudo mysql -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUNGMASTER'; FLUSH PRIVILEGES; CREATE DATABASE IF NOT EXISTS quiz_server_db;\" && sudo service mysql start",
+  "postStartCommand": "sudo service mysql start",
+
+  "forwardPorts": [8080, 4200, 3306],
+
+  // Optional: Set default terminal shell (e.g., zsh or bash)
+  "containerEnv": {
+    "SHELL": "/bin/bash" // or "/bin/zsh" if you install zsh
+  }
+}
