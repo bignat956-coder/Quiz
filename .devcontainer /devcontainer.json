@@ -1,15 +1,11 @@
 {
   "name": "Full-Stack Spring + Angular + MySQL",
-  "image": "mcr.microsoft.com/devcontainers/java-node:0-17-16",
+  "image": "mcr.microsoft.com/devcontainers/universal:latest",
+
   "features": {
-    "ghcr.io/devcontainers/features/mysql:1": {
-      "version": "8.0",
-      "database": "quiz_server_db",
-      "user": "root",
-      "password": "YOUNGMASTER"
-    }
+    // Make sure to remove or comment out this line:
+    // "ghcr.io/devcontainers/features/mysql:1": "8.0"
   },
-  "forwardPorts": [8080, 4200, 3306],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,5 +15,8 @@
       ]
     }
   },
-  "postCreateCommand": "sudo service mysql start"
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-server && sudo mysql -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUNGMASTER'; FLUSH PRIVILEGES; CREATE DATABASE IF NOT EXISTS quiz_server_db;\" && sudo service mysql start",
+  "postStartCommand": "sudo service mysql start",
+
+  "forwardPorts": [8080, 4200, 3306]
 }
