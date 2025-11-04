@@ -1,0 +1,52 @@
+{
+	"name": "Java Spring + Angular + MySQL",
+
+	// Tells Codespaces to use your Docker Compose file
+	"dockerComposeFile": "docker-compose.yaml",
+
+	// Tells Codespaces WHICH service from the compose file is the dev container
+	"service": "app",
+
+	// This is the path where your code will be inside the container
+	"workspaceFolder": "/workspace",
+
+	// These are the "features" (software) to install into the 'app' container
+	"features": {
+		// Installs Java 21 (as requested) and Maven (for your pom.xml)
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "21",
+			"installMaven": "true",
+			"installGradle": "false"
+		},
+		// Installs Node.js (for Angular)
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts" // Installs the latest Long-Term Support version
+		}
+	},
+
+	// Commands to run *after* the container is created
+	"postCreateCommand": "npm install -g @angular/cli",
+
+	// VS Code extensions to install automatically
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",       // For Java development
+				"vmware.vscode-boot-dev-pack",  // For Spring Boot
+				"angular.ng-template",          // For Angular
+				"ms-azuretools.vscode-docker"   // To see running containers
+			]
+		}
+	},
+
+	// Ports to forward automatically
+	"forwardPorts": [
+		8080, // Spring Boot default port
+		4200, // Angular default port
+		3306  // MySQL port
+	],
+
+	// Run as the default 'vscode' user (better security)
+	"remoteUser": "vscode"
+}
+

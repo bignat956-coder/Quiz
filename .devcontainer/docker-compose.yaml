@@ -1,0 +1,38 @@
+# .devcontainer/docker-compose.yaml
+services:
+  # This is your main development container
+  app:
+    # We use a minimal base image; features in devcontainer.json will add Java/Node
+    image: mcr.microsoft.com/devcontainers/base:jammy 
+    
+    # Mounts your project root folder (which is one level up from this file)
+    # into the /workspace folder in the container.
+    volumes:
+      - ..:/workspace:cached 
+
+    # This keeps the container alive so you can connect to it
+    command: sleep infinity
+
+  # This is your MySQL database container
+  db:
+    image: mysql:8.0 # Using a specific version is more stable than 'latest'
+    container_name: mysql_db_quiz
+    restart: unless-stopped
+    
+    # These environment variables MUST match your application.properties
+    environment:
+      MYSQL_ROOT_PASSWORD: YOURSTRONGMASTER
+      MYSQL_DATABASE: quiz_server_db
+    
+    # This creates a persistent volume for your database data
+    volumes:
+      - mysql-data:/var/lib/mysql
+    
+    # You can optionally expose the port to your local machine (not just the container)
+    # This is helpful for connecting a local DB tool if you want.
+    ports:
+      - "3306:3306"
+
+# This defines the named volume used by the db service
+volumes:
+  mysql-data:
