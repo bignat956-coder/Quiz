@@ -18,7 +18,9 @@ private UserRepository userRepository;
  
 private void createAdminUser(){
 
-User optionalUser = userRepository.findByRole(UserRole.ADMIN);
+// THIS IS CORRECT
+Optional<User> optionalUser = userRepository.findByRole(UserRole.ADMIN);
+
 if(optionalUser == null){
     User user = new User();
 
