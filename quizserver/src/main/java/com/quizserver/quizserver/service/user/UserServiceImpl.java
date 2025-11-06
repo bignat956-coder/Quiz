@@ -39,7 +39,7 @@ public Boolean hasUserWithEmail(String email){
     return userRepository.findFirstByEmail(email) != null;
 }
 
-public User creatUser(User user){
+public User createUser(User user){
 
     user.setRole(UserRole.USER);
 
