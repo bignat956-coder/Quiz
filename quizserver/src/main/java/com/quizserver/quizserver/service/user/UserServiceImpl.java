@@ -37,4 +37,7 @@ if(optionalUser == null){
     userRepository.save(user);
 }
 }
+public Boolean hasUserWithEmail(String email){
+    return userRepository.findFirstByEmail(email) != null;
+}
 }
