@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.quizserver.quizserver.entities.User;
 import com.quizserver.quizserver.enums.UserRole;
-import java.util.List;
 import java.util.Optional;
 
 

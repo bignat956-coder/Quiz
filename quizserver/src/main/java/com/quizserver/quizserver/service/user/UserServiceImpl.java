@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.quizserver.quizserver.entities.User;
 import com.quizserver.quizserver.enums.UserRole;
 import com.quizserver.quizserver.repository.UserRepository;
+
+import jakarta.annotation.PostConstruct;
+
 import java.util.Optional;
 
 
@@ -17,7 +20,7 @@ public class UserServiceImpl implements UserService {
 private UserRepository userRepository;
 
 
- 
+@PostConstruct
 private void createAdminUser(){
 
 // THIS IS CORRECT
