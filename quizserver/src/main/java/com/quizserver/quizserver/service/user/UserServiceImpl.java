@@ -9,8 +9,6 @@ import com.quizserver.quizserver.repository.UserRepository;
 
 import jakarta.annotation.PostConstruct;
 
-import java.util.Optional;
-
 
 @Service
 
@@ -24,7 +22,7 @@ private UserRepository userRepository;
 private void createAdminUser(){
 
 // THIS IS CORRECT
-Optional<User> optionalUser = userRepository.findByRole(UserRole.ADMIN);
+User optionalUser = userRepository.findByRole(UserRole.ADMIN);
 
 if(optionalUser == null){
     User user = new User();

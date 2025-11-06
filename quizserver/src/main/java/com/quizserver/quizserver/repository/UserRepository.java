@@ -5,13 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.quizserver.quizserver.entities.User;
 import com.quizserver.quizserver.enums.UserRole;
-import java.util.Optional;
 
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-user findByRole(UserRole role);
-    Optional<User> findByRole(UserRole role);
+    User findByRole(UserRole role);
 
-    User findFirstByEmail(string email);
+
+    User findFirstByEmail(String email);
 }
