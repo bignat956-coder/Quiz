@@ -9,6 +9,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select'; // <-- 1. IMPORT THIS
+import { AuthService } from '../services/auth';
 
 
 
@@ -37,7 +38,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -49,27 +51,20 @@ export class SignupComponent implements OnInit {
   }
 
   submitForm(): void {
-    if (this.validateForm.valid) {
-      // Form is valid, show success
-      console.log('Form data is valid:', this.validateForm.value);
-      this.message.success('Registration Successful!');
+   this.authService.register(this.validateForm.value).subscribe((res)=>{
+  this.message
+    .success(
+      'Signup successful',
+      { nzDuration: 5000 }
+    );
+  this.router.navigateByUrl("/login");
+}, error=>{
+  this.message
+    .error(
+      `${error.error}`,
+      { nzDuration: 5000 }
+    )
+})
 
-      // Navigate to the login page
-      this.router.navigate(['/login']);
-
-    } else {
-      // Form is invalid, show errors
-      console.log('Form is invalid');
-      
-      // This loop marks all fields as "touched" to show error messages
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-      
-      this.message.error('Please correct the errors in the form.');
-    }
   }
 }
