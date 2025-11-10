@@ -33,9 +33,13 @@ export class SignupComponent {
       name: [null, [Validators.required]],
            
       // 2. ADD THE NEW FORM CONTROL
-      studentClass: [null, [Validators.required]] 
-    })
-  }
+      studentClass: [null, [Validators.required]],
+        // 1. ADD THE NEW GENDER CONTROL
+  gender: [null, [Validators.required]] 
+});
+
+    }
+  
 
   submitForm() {
 

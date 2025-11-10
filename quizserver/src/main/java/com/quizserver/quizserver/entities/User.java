@@ -38,5 +38,20 @@ public class User {
               public void setStudentClass(String studentClass) {
                         this.studentClass = studentClass;
               }
+
+               // 1. ADD THE NEW FIELD
+    @Column(name = "gender")
+    private String gender;
+    
+    // ... existing getters and setters ...
+    
+    // 2. ADD GETTER AND SETTER FOR THE NEW FIELD
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
             }
  
