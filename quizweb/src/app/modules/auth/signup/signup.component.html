@@ -24,6 +24,21 @@
                     </nz-form-control>
                 </nz-form-item>
 
+                <nz-form-item>
+  <nz-form-label [nzFor]="'studentClass'">Class</nz-form-label>
+  <nz-form-control nzErrorTip="Please select your class!">
+    <nz-select id="studentClass" formControlName="studentClass" nzPlaceHolder="Select your class">
+      <nz-option 
+        *ngFor="let class of classList" 
+        [nzLabel]="class" 
+        [nzValue]="class">
+      </nz-option>
+    </nz-select>
+  </nz-form-control>
+</nz-form-item>
+
+
+
                 <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Register</button>
                 Or <a routerLink="/login"> login now! </a>
 

@@ -15,6 +15,9 @@ import { AuthService } from '../services/auth';
 
 export class SignupComponent {
 
+    
+    // 1. ADD THIS ARRAY
+      classList: string[] = ['JSS1', 'JSS2', 'JSS3', 'SSS1', 'SSS2', 'SSS3'];
   constructor(private fb: FormBuilder,
     private message: NzMessageService,
     private router: Router,
@@ -27,7 +30,10 @@ export class SignupComponent {
     this.validateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
-      name: [null, [Validators.required]]
+      name: [null, [Validators.required]],
+           
+      // 2. ADD THE NEW FORM CONTROL
+      studentClass: [null, [Validators.required]] 
     })
   }
 

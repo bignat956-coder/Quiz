@@ -2,6 +2,7 @@ package com.quizserver.quizserver.entities;
 
 import com.quizserver.quizserver.enums.UserRole;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,8 +27,16 @@ public class User {
 
  private UserRole role;
 
- private String userClass;
+  @Column(name = "student_class")
+      private String studentClass;
 
-  
-}
+      // 2. ADD GETTER AND SETTER FOR THE NEW FIELD
+          public String getStudentClass() {
+                    return studentClass;
+          }
+
+              public void setStudentClass(String studentClass) {
+                        this.studentClass = studentClass;
+              }
+            }
  
