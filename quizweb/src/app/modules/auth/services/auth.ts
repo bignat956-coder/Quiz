@@ -24,4 +24,16 @@ export class AuthService {
     
     return this.http.post(BASIC_URL + '/auth/sign-up', data);
   }
+
+   login(loginRequest: any): Observable<any> {
+    
+    // 2. CHANGED THIS LINE:
+    //    Removed the extra "/api" to prevent a duplicate path.
+    //
+    //    This now correctly creates the URL: "/api/auth/sign-up"
+    //    The proxy will catch this and send it to:
+    //    http://localhost:8080/api/auth/sign-up
+    
+    return this.http.post(BASIC_URL + '/auth/login', loginRequest);
+  }
 }
