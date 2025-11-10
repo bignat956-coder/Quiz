@@ -2,18 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASIC_URL = "http://localhost:8080/";
+// 1. CHANGED THIS LINE:
+//    Now it's a relative path to trigger the proxy.conf.json.
+const BASIC_URL = '/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  register(data): Observable<any>{
+  register(data: any): Observable<any> {
     
-    return this.http.post(BASIC_URL + "api/auth/sign-up", data);
+    // 2. CHANGED THIS LINE:
+    //    Removed the extra "/api" to prevent a duplicate path.
+    //
+    //    This now correctly creates the URL: "/api/auth/sign-up"
+    //    The proxy will catch this and send it to:
+    //    http://localhost:8080/api/auth/sign-up
+    
+    return this.http.post(BASIC_URL + '/auth/sign-up', data);
   }
-  
 }
