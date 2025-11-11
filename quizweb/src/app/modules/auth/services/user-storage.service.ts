@@ -7,21 +7,25 @@ const USER = "q_user";
 })
 export class UserStorageService {
 
+  // NO saveToken() function. We are deliberately removing it.
+  // It was a broken placeholder from the start.
+
   constructor() { }
 
   static saveUser(user: any): void {
     window.localStorage.removeItem(USER);
     window.localStorage.setItem(USER, JSON.stringify(user));
   }
+
+  // This is the SAFE version of getUser().
+  // It handles being logged out (user === null) without crashing.
   static getUser(): any {
     const user = localStorage.getItem(USER);
 
-    // Check for null first!
     if (user === null) {
       return null;
     }
 
-    // If it's not null, we can safely parse it
     return JSON.parse(user);
   }
 
@@ -37,20 +41,19 @@ export class UserStorageService {
     return user.role;
   }
 
+  // This is the correct, simple logic for your app.
   static isAdminLoggedIn(): boolean {
     const role: string = this.getUserRole();
     return role === 'ADMIN';
   }
 
-    static isUserLoggedIn(): boolean {
-    const role:string = this.getUserRole();
+  // This is the correct, simple logic for your app.
+  static isUserLoggedIn(): boolean {
+    const role: string = this.getUserRole();
     return role === 'USER';
   }
 
   static signOut(): void {
     window.localStorage.removeItem(USER);
   }
-
 }
-
-

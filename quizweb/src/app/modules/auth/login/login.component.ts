@@ -35,18 +35,20 @@ export class LoginComponent {
       .success(
         'Login Success.',
         { nzDuration: 5000 }
+        
       );
+
+      
+
 
       const user = {
         id: res.id,
         role: res.role
       }
-
-      UserStorageService.saveUser(user);
       if(UserStorageService.isAdminLoggedIn()){
-        this.router.navigateByUrl('admin/dashboard');
+        this.router.navigateByUrl('/admin/dashboard'); // <-- FIX
       }else if(UserStorageService.isUserLoggedIn()){
-        this.router.navigateByUrl('user/dashboard');
+        this.router.navigateByUrl('/user/dashboard'); // <-- FIX
       }
 
 
