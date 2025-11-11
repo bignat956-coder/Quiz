@@ -1,6 +1,8 @@
 package com.quizserver.quizserver.entities;
 
 
+import com.quizserver.quizserver.dto.TestDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,5 +22,16 @@ public class Test {
     private String description;
 
     private Long time;
+
+        public TestDTO getDTO() {
+        TestDTO testDTO = new TestDTO();
+
+        testDTO.setId(id);
+        testDTO.setTitle(title);
+        testDTO.setDescription(description);
+        testDTO.setTime(time);
+
+        return testDTO;
+    }
 
 }
