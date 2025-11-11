@@ -45,10 +45,12 @@ export class LoginComponent {
         id: res.id,
         role: res.role
       }
+
+      UserStorageService.saveUser(user);
       if(UserStorageService.isAdminLoggedIn()){
-        this.router.navigateByUrl('/admin/dashboard'); // <-- FIX
+        this.router.navigateByUrl('admin/dashboard');
       }else if(UserStorageService.isUserLoggedIn()){
-        this.router.navigateByUrl('/user/dashboard'); // <-- FIX
+        this.router.navigateByUrl('user/dashboard');
       }
 
 
