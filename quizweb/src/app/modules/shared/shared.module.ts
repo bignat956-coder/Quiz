@@ -5,7 +5,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { DemoNgZoroAntdModule } from '../../DemoNgZorroAntdModule';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -15,6 +14,7 @@ import { DemoNgZoroAntdModule } from '../../DemoNgZorroAntdModule';
     RouterOutlet,
     RouterLink,
     DemoNgZoroAntdModule,
+		 
   ],
   exports: [
     CommonModule,
@@ -23,6 +23,8 @@ import { DemoNgZoroAntdModule } from '../../DemoNgZorroAntdModule';
     RouterOutlet,
     RouterLink,
     DemoNgZoroAntdModule,
+    
+  
   ],
 })
 export class SharedModule {}
