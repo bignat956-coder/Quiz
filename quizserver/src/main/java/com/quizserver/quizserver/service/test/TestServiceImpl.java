@@ -22,6 +22,10 @@ public class TestServiceImpl implements TestService {
         test.setDescription(dto.getDescription());
         test.setTime(dto.getTime());
 
+        
+ // THIS IS THE MISSING LINE:
+    test.setStudentClass(dto.getStudentClass());
+    
                 return testRepository.save(test).getDTO();
                     }
 

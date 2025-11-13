@@ -27,7 +27,10 @@ export class CreateTestComponent {
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
       time: [null, [Validators.required]],
-    })
+    
+        studentClass: [null, [Validators.required]],
+         });
+  
   }
 
   submitForm(){
