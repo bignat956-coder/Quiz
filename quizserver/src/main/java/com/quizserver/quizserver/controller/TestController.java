@@ -1,10 +1,14 @@
 package com.quizserver.quizserver.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,4 +34,13 @@ public class TestController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("/tests/class/{studentClass}")
+public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String studentClass) {
+    // Call the service method we just built
+    List<TestDTO> tests = testService.getAllTestsByClass(studentClass);
+    
+    // Send the list back as a successful (200 OK) response
+    return ResponseEntity.ok(tests);
+}
+
 }

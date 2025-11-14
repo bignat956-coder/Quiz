@@ -6,10 +6,13 @@ import org.springframework.stereotype.Service;
 import com.quizserver.quizserver.dto.TestDTO;
 import com.quizserver.quizserver.entities.Test;
 import com.quizserver.quizserver.repository.TestRepository;
+import java.util.stream.Collectors;
+import java.util.List; 
 
 @Service
 public class TestServiceImpl implements TestService {
-    
+
+   
 
     @Autowired
     private TestRepository testRepository;
@@ -29,7 +32,21 @@ public class TestServiceImpl implements TestService {
                 return testRepository.save(test).getDTO();
                     }
 
+    // ... (your existing createTest method) ...
 
-    }
+@Override
+ // <-- If you have this in your TestService interface
+public List<TestDTO> getAllTestsByClass(String studentClass) {
+    // 1. Call the repository method we just built
+    List<Test> tests = testRepository.findByStudentClass(studentClass);
+    
+    // 2. Convert the List<Test> into a List<TestDTO>
+    return tests.stream()
+                .map(Test::getDTO) // Uses your existing getDTO() helper
+                .collect(Collectors.toList());
+}
+
+}
+
 
 

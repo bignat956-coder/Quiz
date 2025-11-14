@@ -14,6 +14,15 @@ export class AdminService {
 
   createTest(testDto: any): Observable<any>{
     return this.http.post(BASIC_URL + "/test", testDto);
+
   }
+  // ADD THIS NEW METHOD:
+getAllTestsByClass(studentClass: string): Observable<any> {
+  // We'll use simple string addition to match your createTest style
+  return this.http.get(BASIC_URL + "/tests/class/" + studentClass);
+}
+
+// ... (rest of your file) ...
+
   
 }
