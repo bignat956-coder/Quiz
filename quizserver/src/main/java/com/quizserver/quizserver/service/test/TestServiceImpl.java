@@ -19,16 +19,11 @@ import java.util.Optional;
 @Service
 public class TestServiceImpl implements TestService {
 
-   
-
     @Autowired
     private TestRepository testRepository;
 
-
-
     @Autowired
-private QuestionRepository questionRepository;
-
+    private QuestionRepository questionRepository;
 
     public TestDTO createTest(TestDTO dto){
         Test test = new Test();
@@ -36,30 +31,18 @@ private QuestionRepository questionRepository;
         test.setTitle(dto.getTitle());
         test.setDescription(dto.getDescription());
         test.setTime(dto.getTime());
-
-        
- // THIS IS THE MISSING LINE:
-    test.setStudentClass(dto.getStudentClass());
+        test.setStudentClass(dto.getStudentClass());
     
-                return testRepository.save(test).getDTO();
-                    }
+        return testRepository.save(test).getDTO();
+    }
 
-
-    // ... (your existing createTest method) ...
-
-@Override
- // <-- If you have this in your TestService interface
-public List<TestDTO> getAllTestsByClass(String studentClass) {
-    // 1. Call the repository method we just built
-    List<Test> tests = testRepository.findByStudentClass(studentClass);
-    
-    // 2. Convert the List<Test> into a List<TestDTO>
-    return tests.stream()
-                .map(Test::getDTO) // Uses your existing getDTO() helper
-                .collect(Collectors.toList());
-}
-
-
+    @Override
+    public List<TestDTO> getAllTestsByClass(String studentClass) {
+        List<Test> tests = testRepository.findByStudentClass(studentClass);
+        return tests.stream()
+                    .map(Test::getDTO) 
+                    .collect(Collectors.toList());
+    }
 
     public QuestionDTO addQuestionInTest(QuestionDTO dto) {
         Optional<Test> optionalTest = testRepository.findById(dto.getId());
@@ -78,13 +61,16 @@ public List<TestDTO> getAllTestsByClass(String studentClass) {
         }
         throw new EntityNotFoundException("Test Not Found");
     }
-
-        public List<Test> getAllTests(){
-        return testRepository.findAll().stream().peek(
-                test -> test.setTime(test.getQuestions().size() * test.getTime())
-        ).collect(Collectors.toList());
+    // THIS IS THE FIXED METHOD
+    public List<TestDTO> getAllTests(){
+        // 1. Get all tests from the database
+        List<Test> tests = testRepository.findAll();
+        
+        // 2. Convert the list of Test entities to a list of TestDTOs
+        return tests.stream()
+                    .map(Test::getDTO) // Uses your existing getDTO() helper
+                    .collect(Collectors.toList());
     }
-
 
 }
 

@@ -22,7 +22,13 @@ getAllTestsByClass(studentClass: string): Observable<any> {
   return this.http.get(BASIC_URL + "/tests/class/" + studentClass);
 }
 
-// ... (rest of your file) ...
+  getAllTest(): Observable<any>{
+    return this.http.get(BASIC_URL + '/test');
+  }
+
+
+
+
 
   
 }
