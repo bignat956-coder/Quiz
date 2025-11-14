@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quizserver.quizserver.dto.QuestionDTO;
 import com.quizserver.quizserver.dto.TestDTO;
 import com.quizserver.quizserver.service.test.TestService;
 
@@ -42,5 +43,14 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
     // Send the list back as a successful (200 OK) response
     return ResponseEntity.ok(tests);
 }
+    @PostMapping("/question")
+    public ResponseEntity<?> addQuestionInTest(@RequestBody QuestionDTO dto){
+        try{
+            return new ResponseEntity<>(testService.addQuestionInTest(dto), HttpStatus.CREATED);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

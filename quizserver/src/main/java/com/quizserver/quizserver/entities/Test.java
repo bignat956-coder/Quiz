@@ -1,13 +1,17 @@
 package com.quizserver.quizserver.entities;
 
 
+import java.util.List;
+
 import com.quizserver.quizserver.dto.TestDTO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity
@@ -23,6 +27,10 @@ public class Test {
     private String description;
 
     private Long time;
+
+        @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
+    private List<Question> questions;
+
     // ... other fields like id, title, description, etc.
 
 @Column(name = "student_class")
