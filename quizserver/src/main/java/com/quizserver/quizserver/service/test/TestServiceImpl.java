@@ -79,6 +79,13 @@ public List<TestDTO> getAllTestsByClass(String studentClass) {
         throw new EntityNotFoundException("Test Not Found");
     }
 
+        public List<Test> getAllTests(){
+        return testRepository.findAll().stream().peek(
+                test -> test.setTime(test.getQuestions().size() * test.getTime())
+        ).collect(Collectors.toList());
+    }
+
+
 }
 
 

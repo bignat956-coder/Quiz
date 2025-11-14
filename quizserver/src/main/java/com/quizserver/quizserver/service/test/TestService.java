@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.quizserver.quizserver.dto.QuestionDTO;
 import com.quizserver.quizserver.dto.TestDTO;
+import com.quizserver.quizserver.entities.Test;
 
 public interface TestService {
 
@@ -12,6 +13,8 @@ public interface TestService {
     List<TestDTO> getAllTestsByClass(String studentClass);
 
     QuestionDTO addQuestionInTest(QuestionDTO dto);
+
+    List<Test> getAllTests();
 
 }
 

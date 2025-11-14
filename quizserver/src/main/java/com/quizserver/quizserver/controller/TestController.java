@@ -52,5 +52,13 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> getAllTests(){
+        try{
+            return new ResponseEntity<>(testService.getAllTests(), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }
