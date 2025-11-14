@@ -44,7 +44,12 @@ public class TestServiceImpl implements TestService {
                     .collect(Collectors.toList());
     }
 
+    @SuppressWarnings("null")
     public QuestionDTO addQuestionInTest(QuestionDTO dto) {
+          // 1. ADD THIS NULL CHECK
+        if (dto.getId() == null) {
+            throw new IllegalArgumentException("Test ID in QuestionDTO cannot be null");
+        }
         Optional<Test> optionalTest = testRepository.findById(dto.getId());
         if (optionalTest.isPresent()) {
             Question question = new Question();
