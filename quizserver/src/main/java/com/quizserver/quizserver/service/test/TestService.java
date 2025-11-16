@@ -15,6 +15,6 @@ public interface TestService {
 
     List<TestDTO> getAllTests();
 
-
+void deleteTest(Long testId); // <-- ADD THIS LINE
 }
 

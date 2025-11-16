@@ -44,13 +44,17 @@ public class TestServiceImpl implements TestService {
                     .collect(Collectors.toList());
     }
 
-    @SuppressWarnings("null")
+    // THIS IS THE FIXED METHOD
     public QuestionDTO addQuestionInTest(QuestionDTO dto) {
-          // 1. ADD THIS NULL CHECK
+        
+        // 1. ADDED THIS NULL CHECK
         if (dto.getId() == null) {
             throw new IllegalArgumentException("Test ID in QuestionDTO cannot be null");
         }
-        Optional<Test> optionalTest = testRepository.findById(dto.getId());
+        
+        // 2. This line is now safe, and the warning is gone
+        Optional<Test> optionalTest = testRepository.findById(dto.getId()); 
+
         if (optionalTest.isPresent()) {
             Question question = new Question();
 
@@ -66,18 +70,24 @@ public class TestServiceImpl implements TestService {
         }
         throw new EntityNotFoundException("Test Not Found");
     }
-    // THIS IS THE FIXED METHOD
+
     public List<TestDTO> getAllTests(){
-        // 1. Get all tests from the database
         List<Test> tests = testRepository.findAll();
-        
-        // 2. Convert the list of Test entities to a list of TestDTOs
         return tests.stream()
-                    .map(Test::getDTO) // Uses your existing getDTO() helper
+                    .map(Test::getDTO)
                     .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteTest(Long testId) {
+        
+        if (testId == null) {
+            throw new IllegalArgumentException("Test ID cannot be null");
+        }
+        
+        if (!testRepository.existsById(testId)) {
+            throw new EntityNotFoundException("Test with ID " + testId + " not found");
+        }
+        testRepository.deleteById(testId);
+    }
 }
-
-
-

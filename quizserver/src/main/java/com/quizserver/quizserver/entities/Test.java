@@ -28,7 +28,7 @@ public class Test {
 
     private Long time;
 
-        @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
+        @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 
     // ... other fields like id, title, description, etc.
@@ -63,4 +63,5 @@ public void setStudentClass(String studentClass) {
         return testDTO;
     }
 
+    
 }

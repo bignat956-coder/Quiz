@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping; // <-- Import this
+
 
 import com.quizserver.quizserver.dto.QuestionDTO;
 import com.quizserver.quizserver.dto.TestDTO;
 import com.quizserver.quizserver.service.test.TestService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/test")
@@ -57,6 +61,20 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
         try{
             return new ResponseEntity<>(testService.getAllTests(), HttpStatus.OK);
         } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+    @DeleteMapping("/{testId}") // This makes the full URL: /api/test/1 (or whatever the ID is)
+    public ResponseEntity<?> deleteTest(@PathVariable Long testId) {
+        try {
+            testService.deleteTest(testId);
+            return new ResponseEntity<>("Test deleted successfully", HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

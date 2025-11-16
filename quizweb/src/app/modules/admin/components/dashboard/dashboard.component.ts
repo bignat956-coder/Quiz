@@ -43,4 +43,35 @@ export class DashboardComponent {
     return `${minutes} minutes ${seconds} seconds`;
   }
 
+  // ADD THIS NEW FUNCTION
+    deleteTest(testId: number) {
+    this.testService.deleteTest(testId).subscribe(res => {
+      this.notification.success(
+        'SUCCESS',
+        'Test deleted successfully!',
+        { nzDuration: 5000 }
+      );
+      this.getAllTests();
+      
+    }, error => {
+      
+      // THIS IS THE NEW, SMARTER ERROR HANDLER
+      let errorMessage = "Something went wrong.";
+      if (error.error) {
+        // If the error has a body, stringify it
+        errorMessage = JSON.stringify(error.error);
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
+      this.notification.error(
+        'ERROR',
+        'Failed: ' + errorMessage, // This will show the REAL backend error
+        { nzDuration: 5000 }
+      );
+    });
+  }
+
+
+  
   }
