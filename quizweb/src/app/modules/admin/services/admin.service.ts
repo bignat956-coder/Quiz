@@ -31,7 +31,12 @@ getAllTestsByClass(studentClass: string): Observable<any> {
   // ADD THIS NEW METHOD
   deleteTest(testId: number): Observable<any> {
     return this.http.delete(BASIC_URL + '/test/' + testId);
+    
+
   }
 
-  
+    addQuestionInTest(questionDto: any): Observable<any>{
+    return this.http.post(BASIC_URL + '/test/question', questionDto);
+  }
+
 }
