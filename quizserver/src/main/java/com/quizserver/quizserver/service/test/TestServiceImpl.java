@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.quizserver.quizserver.dto.QuestionDTO;
 import com.quizserver.quizserver.dto.TestDTO;
+import com.quizserver.quizserver.dto.TestDetailsDTO;
 import com.quizserver.quizserver.entities.Question;
 import com.quizserver.quizserver.entities.Test;
 import com.quizserver.quizserver.repository.QuestionRepository;
@@ -90,4 +91,20 @@ public class TestServiceImpl implements TestService {
         }
         testRepository.deleteById(testId);
     }
+
+    public TestDetailsDTO getAllQuestionsByTest(Long id) {
+        Optional<Test> optionalTest = testRepository.findById(id);
+        TestDetailsDTO testDetailsDTO = new TestDetailsDTO();
+        if (optionalTest.isPresent()) {
+            TestDTO testDTO = optionalTest.get().getDTO();
+            testDTO.setTime(optionalTest.get().getTime() * optionalTest.get().getQuestions().size());
+
+            testDetailsDTO.setTestDTO(testDTO);
+            testDetailsDTO.setQuestions(optionalTest.get().getQuestions().stream().map(Question::getDTO).toList());
+            return testDetailsDTO;
+        }
+        return testDetailsDTO;
+    }
+
+
 }
