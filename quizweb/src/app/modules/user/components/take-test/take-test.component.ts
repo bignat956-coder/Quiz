@@ -17,6 +17,9 @@ export class TakeTestComponent {
     questions: any[] = [];
   testId:any;
 
+    selectedAnswers: { [key: number]: string } = {};
+
+
   // 2. Inject AdminService here (you can still call the variable 'testService')
   constructor(private testService: AdminService,
     private activatedRoute: ActivatedRoute,
@@ -40,4 +43,10 @@ export class TakeTestComponent {
       }
     });
   }
+
+    onAnswerChange(questionId: number, selectedOption: string) {
+    this.selectedAnswers[questionId] = selectedOption;
+    console.log(this.selectedAnswers);
+  }
+
 }

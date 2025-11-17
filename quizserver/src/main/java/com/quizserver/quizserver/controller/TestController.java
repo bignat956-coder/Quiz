@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping; // <-- Import this
 
 
 import com.quizserver.quizserver.dto.QuestionDTO;
+import com.quizserver.quizserver.dto.SubmitTestDTO;
 import com.quizserver.quizserver.dto.TestDTO;
 import com.quizserver.quizserver.service.test.TestService;
 
@@ -65,6 +66,14 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
         }
     }
 
+    @PostMapping("/submit-test")
+    public ResponseEntity<?> submitTest(@RequestBody SubmitTestDTO dto){
+        try{
+            return new ResponseEntity<>(testService.submitTest(dto), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
     @DeleteMapping("/{testId}") // This makes the full URL: /api/test/1 (or whatever the ID is)
@@ -86,6 +95,8 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+
+        
     }
  
 }
