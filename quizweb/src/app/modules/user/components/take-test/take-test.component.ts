@@ -7,6 +7,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormsModule } from '@angular/forms';
 import { UserStorageService } from '../../../auth/services/user-storage.service';
 import { UserService } from '../../services/test.service';
+import { interval } from 'rxjs';
 // 2. Removed the incorrect UserService import
 
 @Component({
@@ -23,6 +24,7 @@ export class TakeTestComponent {
   // 3. Kept only ONE declaration of selectedAnswers
   selectedAnswers: { [key: string]: string } = {};
   timeRemaining: number = 0;
+  interval: any;
 
   // 4. Injected AdminService, but kept the variable name 'testService'
   //    so the rest of your code works.
@@ -45,10 +47,22 @@ export class TakeTestComponent {
           console.log(this.questions);
 
           this.timeRemaining = res.testDTO.time  || 0;
+          this.startTimer();
         });
       }
     });
   }
+  startTimer(){
+    this.interval = setInterval(()=>{
+      if(this.timeRemaining > 0){
+        this.timeRemaining--;
+      } else {
+        clearInterval(this.interval);
+        this.submitAnswers();
+      }
+    }, 1000)
+  }
+
 
     getFormattedTime(): string {
     const minutes = Math.floor(this.timeRemaining / 60);
