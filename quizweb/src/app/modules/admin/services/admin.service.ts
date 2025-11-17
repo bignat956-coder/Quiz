@@ -40,6 +40,13 @@ getAllTestsByClass(studentClass: string): Observable<any> {
 
     getTestQuestionsById(id: number): Observable<any>{
     return this.http.get(BASIC_URL + `/test/${id}`);
+
+
+  }
+
+
+    getTestResults(): Observable<any>{
+    return this.http.get(BASIC_URL + '/test/test-result');
   }
 
 }

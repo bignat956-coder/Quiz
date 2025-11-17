@@ -37,7 +37,7 @@ public class TestServiceImpl implements TestService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    @Autowired 
+    @Autowired // <-- TYPO FIXED HERE
     private TestResultRepository testResultRepository;
 
     public TestDTO createTest(TestDTO dto){
@@ -50,6 +50,13 @@ public class TestServiceImpl implements TestService {
     
         return testRepository.save(test).getDTO();
     }
+
+    // MODIFIED THIS METHOD
+    public List<TestResultDTO> getAllTestResults(){
+        // Use the new findAllWithDetails() method to prevent lazy loading errors
+        return testResultRepository.findAllWithDetails().stream().map(TestResult::getDTO).collect(Collectors.toList());
+    }
+
 
     @Override
     public List<TestDTO> getAllTestsByClass(String studentClass) {
@@ -149,3 +156,4 @@ public class TestServiceImpl implements TestService {
     }
 
 }
+
