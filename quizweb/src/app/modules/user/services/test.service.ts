@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserStorageService } from '../../auth/services/user-storage.service';
 
 const BASIC_URL = "/api"; // Your base API path
 
@@ -9,6 +10,10 @@ const BASIC_URL = "/api"; // Your base API path
   providedIn: 'root'
 })
 export class UserService {
+  testId: any;
+  testService: any;
+  message: any;
+  router: any;
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +26,12 @@ export class UserService {
     getTestQuestionsById(id: number): Observable<any>{
     return this.http.get(BASIC_URL + `/test/${id}`);
   }
+
+    submitTest(data: any): Observable<any>{
+    return this.http.post(BASIC_URL + '/test/submit-test', data);
+  }
+
+
+
 
 }
