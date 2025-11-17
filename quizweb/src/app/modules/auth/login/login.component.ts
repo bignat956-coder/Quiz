@@ -38,13 +38,13 @@ export class LoginComponent {
         
       );
 
+            const user = {
+        id: res.id,
+        role: res.role,
+        studentClass: res.studentClass // <-- ADD THIS LINE
+      }
       
 
-
-      const user = {
-        id: res.id,
-        role: res.role
-      }
 
       UserStorageService.saveUser(user);
       if(UserStorageService.isAdminLoggedIn()){

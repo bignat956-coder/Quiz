@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="main">
+    <div nz-row>
+        <div nz-col nzSpan="24" style="margin-bottom: 20px;">
+
+            @if (tests.length > 0) {
+
+                @for (test of tests; track test.id) {
+                    <span style="margin: 20px;">
+                        <nz-card [nzBordered]="true" class="test" [nzTitle]="test.title">
+                            <p><strong>Time:</strong> {{getFormattedTime(test.time)}}</p>
+                            <p><strong>Description:</strong> {{ test.description }}</p>
+        
+                            <button nz-button nzType="primary" routerLink="/user/take-test/{{test.id}}">Start Exam</button>
+                        </nz-card>
+                    </span>
+                }
+
+            } @else {
+
+                <nz-empty nzNotFoundContent="No tests found for your class."></nz-empty>
+                
+            }
+        </div>
+    </div>
+</div>
