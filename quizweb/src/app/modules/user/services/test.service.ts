@@ -32,5 +32,8 @@ export class UserService {
   }
 
  
+  getMyTestResults(): Observable<any>{
+    return this.http.get(BASIC_URL + `/test/test-result/${UserStorageService.getUserId()}`);
+  }
 
 }
