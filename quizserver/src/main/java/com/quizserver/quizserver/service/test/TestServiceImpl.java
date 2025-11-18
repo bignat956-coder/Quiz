@@ -51,12 +51,7 @@ public class TestServiceImpl implements TestService {
         return testRepository.save(test).getDTO();
     }
 
-    // MODIFIED THIS METHOD
-    public List<TestResultDTO> getAllTestResults(){
-        // Use the new findAllWithDetails() method to prevent lazy loading errors
-        return testResultRepository.findAllWithDetails().stream().map(TestResult::getDTO).collect(Collectors.toList());
-    }
-
+  
 
     @Override
     public List<TestDTO> getAllTestsByClass(String studentClass) {
@@ -155,5 +150,16 @@ public class TestServiceImpl implements TestService {
         return testResultRepository.save(testResult).getDTO();
     }
 
+   
+ // Method for Admin "View Results"
+    public List<TestResultDTO> getAllTestResults(){
+        return testResultRepository.findAll().stream().map(TestResult::getDTO).collect(Collectors.toList());
+    }
+
+        public List<TestResultDTO> getAllTestResultsOfUser(Long userId){
+        return testResultRepository.findByUserId(userId).stream().map(TestResult::getDTO).collect(Collectors.toList());
+    }
+
+    
 }
 

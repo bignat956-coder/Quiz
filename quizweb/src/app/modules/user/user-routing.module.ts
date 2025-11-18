@@ -4,7 +4,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TakeTestComponent } from './components/take-test/take-test.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+ { path: 'dashboard', component: DashboardComponent },
+
+
    { path: 'take-test/:id', component: TakeTestComponent }
 ];
 

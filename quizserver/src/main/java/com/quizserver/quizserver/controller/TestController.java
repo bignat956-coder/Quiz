@@ -98,11 +98,10 @@ public ResponseEntity<List<TestDTO>> getTestsByStudentClass(@PathVariable String
 
         
     }
- 
-        @GetMapping("/test-result")
-    public ResponseEntity<?> getAllTestResults(){
+      @GetMapping("/test-result/{id}")
+    public ResponseEntity<?> getAllTestResultsOfUser(@PathVariable Long id){
         try{
-            return new ResponseEntity<>(testService.getAllTestResults(), HttpStatus.OK);
+            return new ResponseEntity<>(testService.getAllTestResultsOfUser(id), HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

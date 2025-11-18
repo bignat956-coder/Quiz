@@ -31,7 +31,6 @@ export class UserService {
     return this.http.post(BASIC_URL + '/test/submit-test', data);
   }
 
-
-
+ 
 
 }
