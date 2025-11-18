@@ -1,26 +1,28 @@
-<div class="main">
-    <div nz-row>
-        <div nz-col nzSpan="24" style="margin-bottom: 20px;">
-            <span style="margin: 20px;" *ngFor="let test of tests">
-                <nz-card [nzBordered]="true" class="test" [nzTitle]="test.title">
-                    <p><strong>Time:</strong> {{getFormattedTime(test.time)}}</p>
-                    <p><strong>Description:</strong> {{ test.description }}</p>
-
-                    <button nz-button nzType="primary" routerLink="/admin/view-test/{{test.id}}">View Test</button>
-                    <button nz-button nzType="primary" style="margin-right: 5px;"
-                        routerLink="/admin/add-question/{{test.id}}">Add Question</button>
-                
-  <button nz-button nzType="primary" nzDanger style="margin-left: 5px;" 
-          (click)="deleteTest(test.id)">
-    Delete
-  </button>
-                </nz-card>
-
-                
-            </span>
-
+<div class="admin-dashboard-container">
     
+    <h2 class="dashboard-title">Available Tests</h2>
+    <p class="dashboard-sub">Manage, edit, and delete existing quizzes below.</p>
 
+    <div nz-row [nzGutter]="30">
+        <div nz-col [nzSpan]="24" *ngFor="let test of tests" class="test-col"> 
+            <nz-card [nzBordered]="false" [nzTitle]="test.title" class="test-card">
+                
+                <p class="test-info"><strong>Time:</strong> {{getFormattedTime(test.time)}}</p>
+                <p class="test-info description"><strong>Description:</strong> {{ test.description }}</p>
+
+                <div class="card-actions">
+                    <button nz-button nzType="primary" routerLink="/admin/view-test/{{test.id}}">
+                        View Test
+                    </button>
+                    <button nz-button nzType="default" class="add-btn" 
+                        routerLink="/admin/add-question/{{test.id}}">
+                        Add Question
+                    </button>
+                    <button nz-button nzType="primary" nzDanger (click)="deleteTest(test.id)" class="delete-btn">
+                        Delete
+                    </button>
+                </div>
+            </nz-card>
         </div>
     </div>
 </div>

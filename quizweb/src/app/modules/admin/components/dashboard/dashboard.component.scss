@@ -1,24 +1,111 @@
-.row {
-    background-color: #f5f5f5;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-top: 5px;
+/* 1. MAIN CONTAINER (Fixes "Doesn't extend to the end") */
+.admin-dashboard-container {
+  background-color: #f0f2f5; 
+  min-height: 100vh;
+  /* Increased padding to push content further from viewport edges */
+  padding: 30px 100px; 
+  /* Removed max-width to allow content to use the full screen width */
+  margin: 0; 
 }
 
-.test {
-    width: 70%;
-    margin: auto;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+/* 2. Header and Typography */
+.dashboard-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #050234; 
+  margin-bottom: 4px;
 }
 
-.main {
-    padding: 30px;
+.dashboard-sub {
+  color: #8c8c8c;
+  margin-bottom: 30px;
 }
 
-button {
-    float: right;
+/* 3. CARD STYLING (The wide card) */
+.test-card {
+  border-radius: 10px;
+  margin-bottom: 30px; 
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
+  border-top: 5px solid #400397; 
+}
+
+/* 4. CARD CONTENT (Fixes "Write ups are choked") */
+.test-info {
+  margin-bottom: 8px;
+  font-size: 15px; 
+  line-height: 1.5;
+  /* Ensure text is not artificially constrained, let it use 100% of the wide card */
+  max-width: 100%; 
+}
+
+/* Ensure card title is bold and readable */
+:host ::ng-deep .ant-card-head-title {
+    font-weight: 600;
+    color: #400397; 
+}
+
+/* 5. BUTTON GROUP (Fixes "Buttons too" - keeps them grouped left) */
+.card-actions {
+  margin-top: 25px; 
+  display: flex;
+  justify-content: flex-start; /* Buttons are grouped left */
+  gap: 15px; /* Clean spacing between buttons */
+}
+
+.card-actions button {
+  /* Crucial: Prevents buttons from stretching awkwardly */
+  flex-grow: 0; 
+  height: 40px; 
+  padding: 0 20px; 
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+/* Specific Button Styles (Kept for consistency) */
+.add-btn {
+  background-color: #ffffff !important;
+  border-color: #d9ddff !important;
+  color: #050234 !important;
+}
+
+.card-actions button[nztype="primary"] {
+    background-color: #400397;
+    border-color: #400397;
+}
+/* 1. Ensure smooth transitions for all elements */
+.card-actions button {
+  /* Retain previous styles */
+  flex-grow: 0; 
+  height: 40px; 
+  padding: 0 20px;
+  border-radius: 4px;
+  /* Add smooth transition for all properties */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+/* 2. PRIMARY BUTTONS (View Test) Animation */
+.card-actions button[nztype="primary"]:not([nzDanger]):hover {
+    background-color: #5b0ec4 !important; /* Slightly lighter purple */
+    border-color: #5b0ec4 !important;
+    transform: translateY(-2px); /* Lifts the button */
+    box-shadow: 0 4px 8px rgba(64, 3, 151, 0.3); /* Subtle purple glow */
+}
+
+/* 3. DELETE BUTTON (Danger) Animation */
+.delete-btn:hover {
+    background-color: #d90019 !important; /* Darker red */
+    border-color: #d90019 !important;
+    transform: translateY(-2px); /* Lifts the button */
+    box-shadow: 0 4px 8px rgba(245, 34, 45, 0.4); /* Subtle red glow */
+}
+
+/* 4. DEFAULT BUTTON (Add Question) Animation - BIGGEST CHANGE */
+/* It turns into the brand primary color on hover */
+.add-btn:hover {
+    background-color: #400397 !important; /* Solid Brand Purple */
+    border-color: #400397 !important;
+    color: #ffffff !important; /* White text */
+    transform: translateY(-2px); /* Lifts the button */
+    box-shadow: 0 4px 8px rgba(64, 3, 151, 0.3); /* Matches the primary button glow */
 }

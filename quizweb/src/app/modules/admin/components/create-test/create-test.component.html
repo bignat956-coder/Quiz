@@ -1,50 +1,54 @@
-<div class="bg">
-    <div class="parent">
-        <div class="child">
-            <form nz-form [formGroup]="testForm" class="login-form" (ngSubmit)="submitForm()">
-                <nz-form-label [nzNoColon]="true">Title</nz-form-label>
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="This input is required!">
-                        <input type="text" nz-input formControlName="title" placeholder="Title" />
-                    </nz-form-control>
-                </nz-form-item>
+<div class="test-container">
+  <div class="content-wrapper">
 
-
-                <nz-form-label [nzNoColon]="true">Time Per Question</nz-form-label>
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="This input is required!">
-                        <input type="number" nz-input formControlName="time" placeholder="Time Seconds Per Question" />
-                    </nz-form-control>
-                </nz-form-item>
-
-                                <nz-form-label [nzNoColon]="true">Description</nz-form-label>
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="This input is required!">
-                        <textarea rows="4" nz-input formControlName="description" placeholder="Description"></textarea>
-                    </nz-form-control>
-                </nz-form-item>
-<nz-form-item>
-  <nz-form-label [nzNoColon]="true">Student Class</nz-form-label>
-  <nz-form-control nzErrorTip="Please select a class!">
-   <nz-select formControlName="studentClass" nzPlaceHolder="Select a class">
-  <nz-option nzValue="JSS1" nzLabel="JSS1"></nz-option>
-  <nz-option nzValue="JSS2" nzLabel="JSS2"></nz-option>
-  <nz-option nzValue="JSS3" nzLabel="JSS3"></nz-option>
-  <nz-option nzValue="SSS1" nzLabel="SSS1"></nz-option>
-  <nz-option nzValue="SSS2" nzLabel="SSS2"></nz-option>
-  <nz-option nzValue="SSS3" nzLabel="SSS3"></nz-option>
-</nz-select>
-
-  </nz-form-control>
-</nz-form-item>
-
-
-                <div style="padding-bottom: 30px;">
-                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Submit</button>
-                </div>
-
-            </form>
-        </div>
+    <div class="header-section">
+      <h2>Create New Test</h2>
+      <p>Define the parameters and metadata for the quiz.</p>
     </div>
-</div>
 
+    <nz-card class="form-card" [nzBordered]="false">
+      <form nz-form [formGroup]="testForm" (ngSubmit)="submitForm()">
+
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" class="bold-label">Test Title</nz-form-label>
+          <nz-form-control nzErrorTip="This input is required!">
+            <input type="text" nz-input formControlName="title" placeholder="e.g., Midterm Exam: Algebra 101" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" class="bold-label">Time Per Question (Seconds)</nz-form-label>
+          <nz-form-control nzErrorTip="This input is required!">
+            <input type="number" nz-input formControlName="time" placeholder="e.g., 60 (for 60 seconds)" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" class="bold-label">Description</nz-form-label>
+          <nz-form-control nzErrorTip="This input is required!">
+            <textarea rows="4" nz-input formControlName="description" placeholder="Short description of the test content and rules"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" class="bold-label">Student Class</nz-form-label>
+          <nz-form-control nzErrorTip="Please select a class!">
+            <nz-select formControlName="studentClass" nzPlaceHolder="Select a class">
+              <nz-option nzValue="JSS1" nzLabel="JSS1"></nz-option>
+              <nz-option nzValue="JSS2" nzLabel="JSS2"></nz-option>
+              <nz-option nzValue="JSS3" nzLabel="JSS3"></nz-option>
+              <nz-option nzValue="SSS1" nzLabel="SSS1"></nz-option>
+              <nz-option nzValue="SSS2" nzLabel="SSS2"></nz-option>
+              <nz-option nzValue="SSS3" nzLabel="SSS3"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="submit-btn" [nzType]="'primary'" [nzSize]="'large'" nzBlock [disabled]="testForm.invalid">
+          Create Test
+        </button>
+
+      </form>
+    </nz-card>
+  </div>
+</div>

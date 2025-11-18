@@ -3,17 +3,20 @@
         <thead>
             <tr>
                 <th>Test Name</th>
-                <th>Total Question</th>
-                <th>Correct Answers</th>
-                <th>Percentage</th>
+                <th class="align-right">Total Question</th> 
+                <th class="align-right">Correct Answers</th>
+                <th class="align-right">Percentage</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of basicTable.data">
                 <td>{{data.testName}}</td>
-                <td>{{data.totalQuestions}}</td>
-                <td>{{data.correctAnswers}}</td>
-                <td>{{data.percentage}}</td>
+                <td class="align-right">{{data.totalQuestions}}</td>
+                <td class="align-right">{{data.correctAnswers}}</td>
+                <td class="align-right" 
+                    [ngClass]="{'pass': data.percentage >= 50, 'fail': data.percentage < 50}">
+                    {{data.percentage}}
+                </td>
             </tr>
         </tbody>
     </nz-table>

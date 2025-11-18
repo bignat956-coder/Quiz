@@ -1,0 +1,47 @@
+/* --- Ng-Zorro Table Styling --- */
+
+/* 1. Outer Container */
+div[style*="padding: 20px;"] {
+    /* Ensures the container for the table is on the light background */
+    background-color: #ffffff; /* White background for the table itself */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* 2. Table Header */
+/* Targeting the Ng-Zorro header row */
+.ant-table-thead > tr > th {
+    /* Header Background: Slightly lighter grey for contrast */
+    background-color: #f0f2f5 !important; 
+    /* Header Text: Dark Charcoal */
+    color: #343a40; 
+    font-weight: 600;
+    padding: 12px 16px;
+    /* Remove default Ant Design bottom border if needed, or customize it */
+    border-bottom: 2px solid #adb5bd !important;
+    text-align: left; /* Default left alignment */
+}
+
+/* 3. Table Body Cells */
+.ant-table-tbody > tr > td {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #495057; /* General text color */
+    border-bottom: 1px solid #e9ecef; /* Very light separator line */
+}
+
+/* 4. Numerical Alignment (Crucial for Professionalism) */
+/* The last three columns are numerical, so we align them right. */
+/* We target the 2nd, 3rd, and 4th <td> elements within the <tr> */
+.ant-table-tbody > tr > td:nth-child(2),
+.ant-table-tbody > tr > td:nth-child(3),
+.ant-table-tbody > tr > td:nth-child(4) {
+    text-align: right;
+    font-family: monospace; /* Optional: helps numbers align perfectly */
+}
+
+/* 5. Row Hover Effect */
+/* Provides user feedback on which row they are looking at */
+.ant-table-tbody > tr:hover > td {
+    background-color: #e6f7ff !important; /* Very light blue on hover */
+}

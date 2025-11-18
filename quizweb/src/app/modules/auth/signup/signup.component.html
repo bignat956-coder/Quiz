@@ -1,63 +1,71 @@
-<div class="bg" style="background-color: #F8F8F8;">
-    <div class="parent">
-        <div class="child">
-            <div nz-row class="imgDiv">
-                <h1 style="margin-left: 80px;">Sign Up</h1>
-            </div>
-
-            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-                <nz-form-item>
-                    <nz-form-control nzHasFeedback nzErrorTip="The input is not valid E-mail!">
-                        <input nz-input placeholder="E-mail" formControlName="email"/>
-                    </nz-form-control>
-                </nz-form-item>
-
-                                <nz-form-item>
-                    <nz-form-control nzHasFeedback nzErrorTip="The input is not valid Password!">
-                        <input nz-input placeholder="Password" type="password" formControlName="password" />
-                    </nz-form-control>
-                </nz-form-item>
-
-                                <nz-form-item>
-                    <nz-form-control nzHasFeedback nzErrorTip="The input is not valid Name!">
-                        <input nz-input placeholder="Name" formControlName="name" />
-                    </nz-form-control>
-                </nz-form-item>
-
-                <nz-form-item>
-  <nz-form-label [nzFor]="'studentClass'">Class</nz-form-label>
-  <nz-form-control nzErrorTip="Please select your class!">
-    <nz-select id="studentClass" formControlName="studentClass" nzPlaceHolder="Select your class">
-      <nz-option 
-        *ngFor="let class of classList" 
-        [nzLabel]="class" 
-        [nzValue]="class">
-      </nz-option>
-    </nz-select>
-  </nz-form-control>
-</nz-form-item>
-
-<nz-form-item>
-  <nz-form-label [nzFor]="'gender'">Gender</nz-form-label>
-  <nz-form-control nzErrorTip="Please select your gender!">
+<div class="login-container">
+  <div class="login-content">
     
-    <nz-radio-group id="gender" formControlName="gender">
-      <label nz-radio nzValue="Male">Male</label>
-      <label nz-radio nzValue="Female">Female</label>
-      <label nz-radio nzValue="Other">Other</label>
-    </nz-radio-group>
-
-  </nz-form-control>
-</nz-form-item>
-
-
-
-                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Register</button>
-                Or <a routerLink="/login"> login now! </a>
-
-            </form>
-        </div>
+    <div class="header-center">
+      <h1 nz-typography class="form-title">Create Account</h1>
+      <p nz-typography nzType="secondary"></p>
     </div>
+
+    <nz-card [nzBordered]="false" class="auth-card">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Please enter your name!">
+            <nz-input-group [nzPrefix]="userIcon">
+              <input nz-input placeholder="Full Name" formControlName="name" />
+            </nz-input-group>
+            <ng-template #userIcon><i nz-icon nzType="user"></i></ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="The input is not valid E-mail!">
+            <nz-input-group [nzPrefix]="mailIcon">
+              <input nz-input placeholder="E-mail Address" formControlName="email" />
+            </nz-input-group>
+            <ng-template #mailIcon><i nz-icon nzType="mail"></i></ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Please enter a password!">
+            <nz-input-group [nzPrefix]="lockIcon">
+              <input nz-input type="password" placeholder="Password" formControlName="password" />
+            </nz-input-group>
+            <ng-template #lockIcon><i nz-icon nzType="lock"></i></ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please select your class!">
+            <nz-select formControlName="studentClass" nzPlaceHolder="Select your class">
+              <nz-option *ngFor="let class of classList" [nzLabel]="class" [nzValue]="class"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" class="align-left">Gender</nz-form-label>
+          <nz-form-control nzErrorTip="Please select your gender!">
+            <nz-radio-group formControlName="gender" class="full-width-radio">
+              <label nz-radio nzValue="Male">Male</label>
+              <label nz-radio nzValue="Female">Female</label>
+              <label nz-radio nzValue="Other">Other</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" nzBlock>
+          Register
+        </button>
+
+        <div class="footer-links">
+          Already have an account? <a routerLink="/login">Log in</a>
+        </div>
+
+      </form>
+    </nz-card>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

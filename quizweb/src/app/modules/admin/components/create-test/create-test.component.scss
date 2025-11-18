@@ -1,39 +1,69 @@
-.child {
-    padding: 50px;
-    width: 60%;
-    margin: auto;
-    background-color: white;
-    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+/* 1. Main Layout */
+.test-container {
+  background-color: #f0f2f5; /* Dashboard Gray */
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
 }
 
-nz-form-control {
-    min-width: 280px;
+.content-wrapper {
+  width: 100%;
+  max-width: 600px; /* Standard form width */
 }
 
-.parent {
-    margin-top: 40px;
+/* 2. Header */
+.header-section {
+  margin-bottom: 24px;
 }
 
-.login-form-button {
-    width: 30%;
-    float: right;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.header-section h2 {
+  font-weight: 700;
+  color: #050234; /* Brand Navy */
+  margin-bottom: 8px;
 }
 
-button {
-    background-color: #001529;
-    border: none;
+.header-section p {
+  color: #8c8c8c;
 }
 
-nz-divider {
-    padding-bottom: 10px;
+/* 3. The Card */
+.form-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 4. Form Styling */
+.bold-label {
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 4px;
+  display: block;
 }
 
+/* Ensure inputs/textareas are full height for spacing */
+nz-form-item {
+  margin-bottom: 20px; 
+}
+
+/* 5. The Submit Button */
+.submit-btn {
+  width: 100%;
+  background-color: #400397;
+  border-color: #400397;
+  font-weight: 600;
+  margin-top: 16px;
+  border-radius: 6px;
+}
+
+.submit-btn:hover {
+  background-color: #5b0ec4;
+  border-color: #5b0ec4;
+}
+
+/* Disabled button state */
+.submit-btn[disabled] {
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+}

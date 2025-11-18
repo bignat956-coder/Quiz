@@ -1,6 +1,77 @@
-.question {
-    margin: 10px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding: 10px;
+/* 1. Main Container & Layout */
+.test-admin-view-container {
+    background-color: #f0f2f5; 
+    min-height: 100vh;
+    padding: 30px 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questions-list-wrapper {
+    width: 100%;
+    max-width: 900px; /* Optimal width for reading content */
+}
+
+/* 2. Header */
+.view-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #050234; /* Brand Navy */
+    margin-bottom: 4px;
+}
+
+.view-subtitle {
+    color: #8c8c8c;
+    margin-bottom: 30px;
+}
+
+/* 3. Question Card Styling */
+.question-view-card {
+    margin-bottom: 25px;
     border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08); 
+    border: none;
+}
+
+.question-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+}
+
+/* 4. Options Display Styling */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-display-row {
+    padding: 10px 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+/* The Option Tag (A, B, C, D) */
+.option-tag {
+    font-weight: 700;
+    color: #400397;
+    margin-right: 10px;
+    min-width: 15px; /* Ensures tags align cleanly */
+}
+
+/* 5. CORRECT ANSWER HIGHLIGHT */
+.correct-answer {
+    background-color: #f6ffed; /* Light Ant Green Background */
+    border-color: #52c41a; /* Darker Green Border */
+    font-weight: 600;
+}
+
+.correct-answer .option-tag {
+    color: #52c41a; /* Green tag text */
 }

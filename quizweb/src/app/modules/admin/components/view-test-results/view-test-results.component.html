@@ -1,27 +1,39 @@
-<div style="padding: 20px;">
-     <!-- This div will display any errors -->
-    <div *ngIf="errorMessage" style="padding: 20px; background-color: #fff1f0; border: 1px solid #ffccc7; border-radius: 5px; color: #d90000; margin-bottom: 20px; font-family: monospace;">
-      <strong>Failed to Load Data</strong>
-      <p>{{ errorMessage }}</p>
-    </div>
-    <nz-table #basicTable [nzData]="resultsData">
-        <thead>
-            <tr>
-                <th>Test Name</th>
-                <th>User Name</th>
-                <th>Total Question</th>
-                <th>Correct Answers</th>
-                <th>Percentage</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of basicTable.data">
-                <td>{{data.testName}}</td>
-                <td>{{data.userName}}</td>
-                <td>{{data.totalQuestions}}</td>
-                <td>{{data.correctAnswers}}</td>
-                <td>{{data.percentage}}</td>
-            </tr>
-        </tbody>
-    </nz-table>
+<div class="results-dashboard-container">
+
+    <nz-alert 
+        *ngIf="errorMessage" 
+        nzType="error" 
+        [nzMessage]="'Failed to Load Data'" 
+        [nzDescription]="errorMessage" 
+        nzShowIcon 
+        class="error-alert">
+    </nz-alert>
+
+    <nz-card nzTitle="Quiz Result History" class="results-card">
+        
+        <nz-table #basicTable [nzData]="resultsData" [nzPageSize]="10" [nzScroll]="{ x: '700px' }">
+                      <thead>
+                <tr>
+                    <th nzWidth="25%" nzSortKey="testName">Test Name</th>
+                    <th nzWidth="25%" nzSortKey="userName">Student Name</th>
+                    <th nzWidth="15%" nzSortKey="correctAnswers">Correct Answers</th>
+                    <th nzWidth="15%" nzSortKey="percentage">Score Percentage</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{data.testName}}</td>
+                    <td>{{data.userName}}</td>
+                    <td>{{data.correctAnswers}} / {{data.totalQuestions}}</td>
+                    
+                    <td class="score-number-cell" 
+                        [ngClass]="{'pass': data.percentage >= 50, 'fail': data.percentage < 50}">
+                        {{ data.percentage | number:'1.2-2' }}%
+                    </td>
+                </tr>
+            </tbody>
+
+        </nz-table>
+    </nz-card>
 </div>
+

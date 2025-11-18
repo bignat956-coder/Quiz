@@ -1,48 +1,66 @@
-.login-form {
-    max-width: 300px;
+/* 1. The Background (Gradient instead of plain Gray) */
+.login-container {
+  min-height: 100vh;
+  /* This gradient matches your Navbar */
+  background: linear-gradient(135deg, #050234 0%, #400397 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.imgDiv {
-    width: 100%;
-    vertical-align: middle;
-    margin-bottom: 40px;
+.login-content {
+  width: 100%;
+  max-width: 380px;
 }
 
-.login-form-margin {
-    margin-bottom: 26px;
+/* 2. Typography (White text since background is dark) */
+.header-center {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-.login-form-forgot {
-    float: right;
+.form-title {
+  margin-bottom: 4px;
+  color: #ffffff; /* White text to pop against blue bg */
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 1px;
 }
 
+.form-subtitle {
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+  font-size: 16px;
+}
+
+/* 3. The Card Style */
+.auth-card {
+  border-radius: 12px; /* Softer, more modern corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow for 'float' effect */
+  padding: 10px; /* Extra inner spacing */
+}
+
+/* 4. Button & Link Styling */
 .login-form-button {
-    width: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: #400397; /* Brand color button */
+  border-color: #400397;
 }
 
-.child {
-    /* border: 2px solid black; */
-    padding: 50px;
- position: absolute;
-    width: 380px;
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background: white;
-    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-bottom: 32px;
+.login-form-button:hover {
+  background-color: #5b0ec4;
+  border-color: #5b0ec4;
 }
 
-.parent {
-    width: 100%;
-    height: 91vh;
-        position: relative;
+.footer-links {
+  margin-top: 20px;
+  text-align: center;
+  color: #8c8c8c;
 }
 
-button {
-    background-color: #001529;
-    border: none;
+.footer-links a {
+  color: #400397;
+  font-weight: 600;
 }

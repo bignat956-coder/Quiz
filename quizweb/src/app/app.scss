@@ -1,40 +1,85 @@
+/* 1. Force the header layout */
+nz-header.main-header {
+  padding: 0 50px !important;
+  height: 64px !important;
+  line-height: 64px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* stronger shadow */
+  z-index: 1000;
+}
 
-    $secondary-color: #000000;
-    $primary-color: #F48023;
-    $white: #ffffff;
+/* 2. Force the Gradients */
+.admin-bg {
+  background: linear-gradient(90deg, #020110 0%, #01010e 100%) !important;
+}
 
-    .main-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0px 57px;
-        background-color: $primary-color;
-        height: auto;
+.user-bg {
+  background: linear-gradient(90deg, #06010c 0%, #0b0119 100%) !important;
+}
 
-        a.active {
-            background: $secondary-color;
-        }
+/* 3. Logo Styling */
+.brand-logo {
+  font-size: 22px;
+  font-weight: 800; /* Extra bold */
+  color: #ffffff !important;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
 
-        a {
-            font-weight: 300;
-            font-size: 15px;
-            border-radius: 0px;
-            color: $white;
-        }
+/* 4. Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
 
-        a.ant-btn {
-            &:hover {
-                color: $white;
-                background: $secondary-color;
-            }
-        }
+.nav-links a {
+  color: rgba(255, 255, 255, 0.75) !important; /* Dimmed white */
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0 10px;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent; /* Prep for hover effect */
+}
 
-        img {
-            width: 180px;
-        }
+/* Hover State */
+.nav-links a:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px); /* Moves up slightly */
+}
 
-        .img_profile {
-            width: 25px;
-        }
-    }
+/* 5. The Active Link (The line under the text) */
+.active-link {
+  color: #ffffff !important;
+  border-bottom: 2px solid #ffffff !important; /* White line appears */
+}
 
+/* 6. The "Login" Pill Button */
+/* Specific fix for the Login Button Text */
+nav.nav-links a.login-btn {
+  background-color: #ffffff !important;
+  color: #070011 !important;
+  
+  /* 1. Make it Squared */
+  border-radius: 4px !important; /* 4px = slight round, 0px = sharp square */
+  
+  /* 2. Fix the Size */
+  padding: 6px 20px !important; /* Balanced rectangular padding */
+  width: auto !important; /* Prevents it from being a circle */
+  height: auto !important;
+  
+  /* 3. Ensure Alignment */
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-flex !important; /* Helps center text vertically */
+  align-items: center;
+  line-height: normal !important;
+}
+
+nav.nav-links a.login-btn:hover {
+  background-color: #f0f0f0 !important; /* Light gray hover */
+  color: #0f0320 !important;
+  transform: translateY(-1px);
+}

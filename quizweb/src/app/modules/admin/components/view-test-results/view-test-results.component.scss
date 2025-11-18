@@ -1,0 +1,50 @@
+/* 1. Main Container */
+.results-dashboard-container {
+    background-color: #f0f2f5; 
+    min-height: calc(100vh - 64px); /* Fits under the navbar */
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. Card Styling */
+.results-card {
+    width: 100%;
+    max-width: 1400px; /* Limits table width on massive screens */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    border: none;
+}
+
+/* 3. Error Alert (Custom Spacing) */
+.error-alert {
+    width: 100%;
+    max-width: 1400px;
+    margin-bottom: 20px;
+}
+
+/* 4. Table Header Styling */
+:host ::ng-deep .ant-table-thead > tr > th {
+    background: #fafafa;
+    font-weight: 600;
+    color: #400397; /* Brand Purple */
+}
+
+/* 5. Score Column Alignment */
+.score-cell {
+    /* Ensures progress bar sits neatly */
+    vertical-align: middle; 
+}
+/* Color code the final percentage cell */
+.score-number-cell {
+    font-weight: 700;
+}
+
+.score-number-cell.pass {
+    color: #52c41a; /* Green for passing scores */
+}
+
+.score-number-cell.fail {
+    color: #f5222d; /* Red for failing scores */
+}

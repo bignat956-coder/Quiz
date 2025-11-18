@@ -1,41 +1,35 @@
-@if (isAdminLoggedIn) {
-  <nz-header class="main-header" nz-row nzType="flex" style="background-color: #050234;">
-    <div>
-      <a style="color: white; margin-left:50px; font-size: 18px; font-weight: bolder;"
-         routerLink="/admin/dashboard">SOGGOS</a>
-    </div>
-    <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
-      <a nz-button nzType="link" routerLink="/admin/create-test" routerLinkActive="active">Create Test</a>
-      <a nz-button nzType="link" routerLink="/admin/view-test-results" routerLinkActive="active">View Results</a>
-      <a nz-button nzType="link" (click)="logout()">Logout</a>
-    </div>
-  </nz-header>
+<nz-header class="main-header" [ngClass]="{'admin-bg': isAdminLoggedIn, 'user-bg': !isAdminLoggedIn}">
+  
+  <div class="logo-container">
+    <a class="brand-logo" 
+       [routerLink]="isAdminLoggedIn ? '/admin/dashboard' : (isUserLoggedIn ? '/user/dashboard' : '/quiz')">
+       {{ isAdminLoggedIn ? 'SOGGOS ADMIN' : (isUserLoggedIn ? 'SOGGOS' : 'EXAM PORTAL') }}
+    </a>
+  </div>
 
-} @else if (isUserLoggedIn) {
-  <nz-header class="main-header" nz-row nzType="flex" style="background-color: #400397;">
-    <div>
-      <a style="color: white; margin-left:50px; font-size: 18px; font-weight: bolder;"
-         routerLink="/user/dashboard">SOGGOS</a>
-    </div>
-    <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
-      <a nz-button nzType="link" routerLink="/user/view-test-results" routerLinkActive="active">View Results</a>
-      <a nz-button nzType="link" (click)="logout()">Logout</a>
-    </div>
-  </nz-header>
+  <nav class="nav-links">
+    
+    @if (isAdminLoggedIn) {
+      <a routerLink="/admin/dashboard" routerLinkActive="active-link">Dashboard</a>
+      <a routerLink="/admin/create-test" routerLinkActive="active-link">Create Test</a>
+      <a routerLink="/admin/view-test-results" routerLinkActive="active-link">Results</a>
+      <a (click)="logout()" class="logout-btn">Logout</a>
+    } 
+    
+    @else if (isUserLoggedIn) {
+      <a routerLink="/user/dashboard" routerLinkActive="active-link">Dashboard</a>
+      <a routerLink="/user/view-test-results" routerLinkActive="active-link">My Results</a>
+      <a (click)="logout()" class="logout-btn">Logout</a>
+    } 
+    
+    @else {
+      <a routerLink="/register" routerLinkActive="active-link">Sign Up</a>
+      <a routerLink="/login" class="login-btn">Login</a>
+    }
 
-} @else {
-  <nz-header class="main-header" nz-row nz-flex style="background-color: #400397;">
-    <div class="brand">
-      <a style="color: white; margin-left: 50px; font-size: 18px; font-weight: bolder;" 
-         routerLink="/quiz">EXAM PORTAL</a>
-    </div>
-    <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Sign up</a>
-      <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
-    </div>
-  </nz-header>
-}
+  </nav>
+</nz-header>
 
-<router-outlet></router-outlet>
+<div class="content-container">
+  <router-outlet></router-outlet>
+</div>

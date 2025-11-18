@@ -1,57 +1,100 @@
-[nz-form] {
-    max-width: 600px;
+/* 1. MAIN CONTAINER
+   - calc(100vh - 64px): Subtracts the navbar height so no scrollbar appears.
+   - Flexbox: Perfectly centers the card vertically and horizontally.
+*/
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px); 
+  background: linear-gradient(135deg, #050234 0%, #400397 100%);
+  padding: 20px;
+  width: 100%;
 }
 
-.phone-select {
-    width: 70px;
+/* 2. HEADER TEXT (Outside the card) */
+.header-center {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.register-are {
-    margin-bottom: 8px;
+.form-title {
+  color: #ffffff; /* Pure white */
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
-.child {
-    padding: 50px;
-    position: absolute;
-    width: 380px;
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-bottom: 22px;
-}
-nz-form-control {
-    min-width: 280px;
+.form-subtitle {
+  color: rgba(255, 255, 255, 0.8); /* Translucent white */
+  font-size: 16px;
 }
 
-.parent {
-    width: 100%;
-    height: 91vh;
-    position: relative;
+/* 3. THE CARD (The White Box) */
+.auth-card {
+  width: 100%;
+  max-width: 400px; /* Prevents it from getting too wide */
+  background-color: #ffffff;
+  border-radius: 12px; /* Modern rounded corners */
+  border: none; /* Removes default gray border */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Deep shadow for "floating" effect */
+  padding: 10px 20px;
 }
 
-.login-form-margin {
-    margin-bottom: 16px;
+/* 4. INPUT FIELDS */
+/* Add some space between the inputs */
+nz-form-item {
+  margin-bottom: 20px;
 }
 
-.login-form-forgot {
-    float: right;
-}
-
+/* 5. THE LOGIN BUTTON */
 .login-form-button {
-    width: 100%;
+  margin-top: 10px;
+  height: 45px; /* Taller button looks more premium */
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: #400397; /* Matches your brand */
+  border-color: #400397;
+  box-shadow: 0 4px 12px rgba(64, 3, 151, 0.3); /* Subtle glow */
 }
 
-button {
-    background-color: #001529;
-    border: none;
+.login-form-button:hover {
+  background-color: #5b0ec4;
+  border-color: #5b0ec4;
+  transform: translateY(-1px);
 }
 
-.imgDiv {
-    width: 100%;
-    vertical-align: middle;
-    margin-bottom: 40px;
+/* 6. FOOTER LINKS */
+.footer-links {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #8c8c8c;
+}
+
+.footer-links a {
+  color: #400397;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* MOBILE FIX */
+@media (max-width: 576px) {
+  .auth-card {
+    padding: 0; /* Save space on small screens */
+    box-shadow: none; /* Flatter look on mobile */
+  }
+  
+  .form-title {
+    font-size: 26px;
+  }
 }
 

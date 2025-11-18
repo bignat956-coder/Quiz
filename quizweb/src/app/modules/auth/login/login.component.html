@@ -1,29 +1,42 @@
-<div class="bg" style="background-color: #F8F8F8;">
-    <div class="parent">
-        <div class="child">
-            <div nz-row class="imgDiv">
-                <h1 style="margin-left: 100px;">Login</h1>
-            </div>
-
-            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Please input your email!">
-                        <input type="text" nz-input formControlName="email" placeholder="Email" />
-                    </nz-form-control>
-                </nz-form-item>
-
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Please input your Password!">
-                        <input type="password" nz-input formControlName="password" placeholder="Password" />
-                    </nz-form-control>
-                </nz-form-item>
-
-                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-                Or <a routerLink="/register"> register now! </a>
-            </form>
-        </div>
+<div class="login-container">
+  <div class="login-content">
+    
+    <div class="header-center">
+      <h1 class="form-title">Welcome Back</h1>
+      <p class="form-subtitle">Login to your account</p>
     </div>
+
+    <nz-card [nzBordered]="false" class="auth-card">
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your email!">
+            <nz-input-group [nzPrefix]="mailIcon" nzSize="large">
+              <input type="text" nz-input formControlName="email" placeholder="Email Address" />
+            </nz-input-group>
+            <ng-template #mailIcon><span nz-icon nzType="mail"></span></ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please input your Password!">
+            <nz-input-group [nzPrefix]="lockIcon" nzSize="large">
+              <input type="password" nz-input formControlName="password" placeholder="Password" />
+            </nz-input-group>
+            <ng-template #lockIcon><span nz-icon nzType="lock"></span></ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" nzBlock>
+          Log in
+        </button>
+
+        <div class="footer-links">
+          Or <a routerLink="/register">register now!</a>
+        </div>
+
+      </form>
+    </nz-card>
+
+  </div>
 </div>
-
-
-<router-outlet></router-outlet>
